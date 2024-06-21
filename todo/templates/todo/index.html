@@ -1,0 +1,23 @@
+<!-- todo/templates/todo/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'todo/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Todo List</h1>
+        <a class="btn" href="{% url 'add_todo' %}">Add Todo</a>
+        <ul class="todo-list">
+            {% for todo in todos %}
+                <li class="todo-item {% if todo.completed %}completed{% endif %}">
+                    {{ todo.title }} - {{ todo.description }}
+                    <a href="{% url 'update_todo' todo.id %}">Edit</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
